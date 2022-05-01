@@ -1,0 +1,47 @@
+import random
+import time
+
+Board = set(range(1, 11))
+
+def displayBoard(Board):
+    for n in Board:
+        print(n, end='|')
+    print()
+
+def playgame():
+
+    print('Welcome! Here is your board, let\'s get started.')
+    displayBoard(Board)
+
+    while True:
+        print('To begin, roll the pair of dice by typing \'r\' then press Enter''.')
+
+        rollOne = input()
+
+        if rollOne == 'r':
+            diceRoll = random.randint(1, 6) + random.randint(1,6)
+            print('The sum of your two rolls is ' + str(diceRoll) + '.  Now choose which \
+                   numbers to remove from the board.')
+
+        print('Here\'s the board again, you can type a single number, or multiple \
+           numbers separated by a commma to remove them from the board. Then press Enter.')
+        displayBoard(Board)
+
+        newBoard = input()
+        numbers = [int(i) for i in newBoard.split(',')]
+
+        if sum(numbers) != diceRoll:
+            print("Your numbers don't add up to " + diceRoll)
+        else:
+            for n in numbers:
+                if n not in Board:
+                    print(n + " is not in board.")
+                    return
+
+            for i in numbers:
+                Board.discard(i)
+            print("Your new board is: ")
+            displayBoard(Board)
+
+if __name__ == "__main__":
+    playgame()
