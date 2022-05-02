@@ -21,13 +21,16 @@ def playgame():
             diceRoll = random.randint(1, 6) + random.randint(1,6)
             print('The sum of your two rolls is ' + str(diceRoll) + '.  Now choose which \
                    numbers to remove from the board.')
-        elif rollOne == 'n':
-            print('Game Over! You Lose!')
+        
         print('Here\'s the board again, you can type a single number, or multiple \
            numbers separated by a commma to remove them from the board. Then press Enter.')
         displayBoard(Board)
         
         newBoard = input()
+
+        if newBoard == 'n':
+            print('Game Over! You Lose!')
+    
       
         numbers = [int(i) for i in newBoard.split(',')]
         
